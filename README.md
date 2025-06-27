@@ -75,12 +75,8 @@ The firmware streams raw **pcm16/24 kHz** audio to the LLM server over secure 
 | Qty | Part                                  | Reference link                                                                           |
 | --- | ------------------------------------- | ---------------------------------------------------------------------------------------- |
 | 1   | RaspiAudio Muse Proto dev‑board       | [https://raspiaudio.com/product/muse-proto/](https://raspiaudio.com/product/muse-proto/) |
-| 1   | INMP441 or ICS‑43434 MEMS mic         | —                                                                                        |
-| 1   | MAX98357A I²S amplifier + 4 Ω speaker | —                                                                                        |
-| 1   | WS2812B RGB LED (status)              | —                                                                                        |
 | 1   | 18650 Li‑ion cell + holder            | —                                                                                        |
-| 2   | Small DC motors (optional)            | —                                                                                        |
-| n   | Jumper wires, PLA for enclosure       | —                                                                                        |
+| 1   | one donor motorised stuffed animal    | —                                                                                        |
 
 Estimated prototype cost ≤ 15 USD (2025Q2 retail).
 
