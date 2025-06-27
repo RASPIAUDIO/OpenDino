@@ -3,7 +3,9 @@
 ## Abstract
 
 This repository presents **Open Dino**, an open‑hardware / open‑software platform that integrates low‑cost micro‑controllers with large‑scale language models (LLMs) through a lightweight WebSocket interface. 
-**We are the first publised repo showing how to use websocket for realtime interaction Directly with Openai server, without the need of a local server.** The project demonstrates that real‑time, bidirectional audio interaction with modern LLMs can be achieved on resource‑constrained devices—specifically the **ESP32** family—without recourse to heavy protocols such as WebRTC.   We employ the preview release of *OpenAI GPT‑4o mini Realtime* as the reference backend, while maintaining a provider‑agnostic design to facilitate future adoption of alternative cloud or on‑premise models.
+**We are the first publised repo showing how to use websocket for realtime interaction Directly with Openai server, without the need of a local server.** 
+
+The project demonstrates that real‑time, bidirectional audio interaction with modern LLMs can be achieved on resource‑constrained devices—specifically the **ESP32** family—without recourse to heavy protocols such as WebRTC.   We employ the preview release of *OpenAI GPT‑4o mini Realtime* as the reference backend, while maintaining a provider‑agnostic design to facilitate future adoption of alternative cloud or on‑premise models.
 
 > **Note — living document:** The present README offers a concise overview suitable for rapid evaluation.  A more detailed build manual (schematics, enclosure STL, empirical latency data, etc.) will be added in a subsequent revision.
 
