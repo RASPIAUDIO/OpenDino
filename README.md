@@ -1,5 +1,9 @@
 # Open Dino: An Open, Realtime‑AI Educational Toy on ESP32
 
+
+> **Early‑access reservation** — Interested in owning an Open Dino? Pre‑book a unit at [http://dino.raspiaudio.com/](http://dino.raspiaudio.com/). No payment is collected now—just your email. If we gather enough interest (≈ 1 000 reservations), we’ll contact you before moving forward with hardware production.
+
+
 ## Abstract
 
 This repository presents **Open Dino**, an open‑hardware / open‑software platform that integrates low‑cost micro‑controllers with large‑scale language models (LLMs) through a lightweight WebSocket interface. 
