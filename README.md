@@ -2,9 +2,11 @@
 
 ### Demo Video
 
-
-[![Watch the demo](https://github.com/user-attachments/assets/d8d91100-6057-48ae-99a0-2b17d5463887)](https://www.youtube.com/watch?v=aPcab4P5pzs)
-
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=aPcab4P5pzs">
+    <img src="https://github.com/user-attachments/assets/d8d91100-6057-48ae-99a0-2b17d5463887" alt="Watch the demo">
+  </a>
+</p>
 
 > **Early‑access reservation** — Interested in owning an Open Dino? Pre‑book a unit at [http://dino.raspiaudio.com/](http://dino.raspiaudio.com/). No payment is collected now—just your email. If we gather enough interest (≈ 1 000 reservations), we’ll contact you before moving forward with hardware production.
 
