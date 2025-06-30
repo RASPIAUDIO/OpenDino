@@ -72,7 +72,7 @@ The project also proves that modern LLM capabilities fit on **sub‑\$5**, 520�
 | Push‑to‑talk latency ≈ 400 ms  | Measured on 10 Mb s⁻¹ 802.11n Wi‑Fi.                               |
 | JSON‑Schema function calls     | `move(speed, duration)` controls two DC motors via an H‑bridge.    |
 | **Captive web portal**         | Save Wi‑Fi, API key, and per‑child prompt to NVS (survives reset). |
-| Permissive licences            | MIT firmware, CERN‑OHL‑P hardware.                                 |
+
 
 ---
 
