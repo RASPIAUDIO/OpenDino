@@ -134,19 +134,15 @@ cd OpenDino/firmware
 |---------|-----------|--------|
 | v0.1 | GPT‑4o mini realtime demo | ✅ Completed |
 | v0.2 | Captive wifi portal for settings | ⏳ Planned |
-| v0.3 | Extension to other LLM | ⏳ Planned |
-| v0.4 | OTA firmware updates | ⏳ Planned |
+| v0.3 | Try Opus implementation | ⏳ Planned |
+| v0.4 | Temporary APIs keys | ⏳ Planned |
+| v0.5 | Non proprietary Echo cancellation| ⏳ Planned |
+| v0.6 | full duplex mode| ⏳ Planned |
+| v0.7 | Extension to other LLM | ⏳ Planned |
+| v0.8 | OTA firmware updates | ⏳ Planned |
 
 ---
 
-## Contributing
-
-1. Open an issue before large changes.
-2. Keep the code portable—avoid proprietary SDKs.
-3. Respect child privacy—no unsolicited data collection.
-4. Include empirical benchmarks where relevant.
-
----
 
 ## License
 
