@@ -157,6 +157,8 @@ cd OpenDino/firmware
 5. Compile, flash, and open Serial Monitor @ 921 600 baud.
 6. Hold **GPIO 19** to talk; release and Dino replies *and* moves.
 7. Need the portal again? Hold **GPIO 19** while pressing RESET.
+![image](https://github.com/user-attachments/assets/58cee579-49e0-4ed9-bd03-e8f93c92819d)
+
 
 ---
 
