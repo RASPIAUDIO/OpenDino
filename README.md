@@ -154,8 +154,9 @@ cd OpenDino/firmware
 2. Open `OpenDino.ino`.
 3. **Flash once with dummy credentials**. After boot the device hosts a **captive Wi‑Fi portal** (`OpenDino‑Setup`) where you enter real Wi‑Fi, an API key, and a prompt. These persist in NVS.
 
-
-![image](https://github.com/user-attachments/assets/58cee579-49e0-4ed9-bd03-e8f93c92819d)
+<p align="center">
+<img src="https://github.com/user-attachments/assets/58cee579-49e0-4ed9-bd03-e8f93c92819d" alt="wifi portal">
+</p>
 
 4. **Tools ▸ Partition Scheme** → **Huge App (3 MB No OTA)**; enable **PSRAM**.
 5. Compile, flash, and open Serial Monitor @ 921 600 baud.
