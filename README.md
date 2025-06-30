@@ -29,9 +29,6 @@ Open Dino is a fully open‑source, microcontroller‑powered voice assistant 
 The reference hardware is RaspiAudio’s **Muse Proto** dev‑board, but any ESP32‑WROVER + I²S mic/amp combo works—the only changes are pin definitions.
 
 ---
-## GitHub Repository
-
-[https://github.com/RASPIAUDIO/OpenDino](https://github.com/RASPIAUDIO/OpenDino)
 
 ## OpenDino vs. ElatoAI
 
