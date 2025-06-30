@@ -84,10 +84,7 @@ The reference design uses the **RaspiAudio Muse Proto**: ESP32‑WROVER, PS�
 | GND        | —    | All modules | Common ground                            |
 
 ### Schematic
-<p align="center">
-![Dino's schematic](https://github.com/user-attachments/assets/e982b65f-900c-4e72-82cd-8a69d27b0238)
-</p>
-
+<p align="center"> <img src="https://github.com/user-attachments/assets/e982b65f-900c-4e72-82cd-8a69d27b0238" alt="Dino's schematic"> </p>
 ### Realtime Inference Backend
 
 * Transport: TLS WebSockets
