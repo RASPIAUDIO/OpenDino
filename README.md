@@ -34,7 +34,7 @@ The reference hardware is RaspiAudio’s **Muse Proto** dev‑board, but any E
 
 [OpenDino](https://github.com/RASPIAUDIO/OpenDino) is an open‑source project that connects low‑cost **ESP32** microcontrollers directly to OpenAI's Realtime API via secure **WebSockets**. It streams microphone audio to **GPT‑4o mini** (or any compatible model) and plays back the model's audio responses, enabling bidirectional conversation **without** a local server.
 
-Unlike the [ElatoAI example](running_realtime_api_speech_on_esp32_arduino_edge_runtime_elatoai.md), which relies on a companion server running on your PC to handle WebRTC signalling and audio piping, OpenDino performs the entire WebSocket communication stack — authentication, Base64 chunking, streaming, and JSON‑Schema function calls — directly on the ESP32 board.
+Unlike the [ElatoAI example](https://cookbook.openai.com/examples/voice_solutions/running_realtime_api_speech_on_esp32_arduino_edge_runtime_elatoai), which relies on a companion server running on your PC to handle WebRTC signalling and audio piping, OpenDino performs the entire WebSocket communication stack — authentication, Base64 chunking, streaming, and JSON‑Schema function calls — directly on the ESP32 board.
 
 ---
 
