@@ -1,3 +1,11 @@
+<!-- ─────────────────────────────  links  ──────────────────────────── -->
+<p align="center">
+  <a href="https://github.com/RASPIAUDIO/OpenDino"><strong>GitHub Open Dino</strong></a> •
+  <a href="http://raspiaudio.com/"><strong>Site web RaspiAudio</strong></a> •
+  <a href="http://instagram.com/raspiaudio"><strong>Instagram @raspiaudio</strong></a> •
+  <a href="https://cookbook.openai.com/examples/voice_solutions/opendino_realtime_ai_toy_on_esp32"><strong>OpenAI Cookbook</strong></a>
+</p>
+
 # 🦖 Open Dino: An Open, Real‑Time AI Educational Toy on ESP32
 
 <p align="center">
