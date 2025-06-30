@@ -1,6 +1,5 @@
 # 🦖 Open Dino: An Open, Real‑Time AI Educational Toy on ESP32
-
-[![Watch the demo](https://github.com/user-attachments/assets/d8d91100-6057-48ae-99a0-2b17d5463887)](https://www.youtube.com/watch?v=aPcab4P5pzs)
+<p align="center">[![Watch the demo](https://github.com/user-attachments/assets/d8d91100-6057-48ae-99a0-2b17d5463887)](https://www.youtube.com/watch?v=aPcab4P5pzs) </p>
 
 > **Early‑access reservation** — Interested in owning an Open Dino? Pre‑book a unit at <http://dino.raspiaudio.com/> for **1 €** (fully refundable if we do not reach the target). When we reach ≈ 1 000 reservations we’ll contact you before starting hardware production.
 
@@ -60,7 +59,7 @@ The project also proves that modern LLM capabilities fit on **sub‑\$5**, 520�
 ---
 
 ## System Architecture
-
+<p align="center">
 ```mermaid
 sequenceDiagram
     participant Board as ESP32 (Muse Proto)
@@ -70,6 +69,7 @@ sequenceDiagram
     LLM-->>Board: JSON {"function_call":"move"}
     Board->>DRV8833: PWM A/B (head wiggle / walk)
 ```
+ </p>
 
 ### Hardware Platform
 
@@ -84,8 +84,9 @@ The reference design uses the **RaspiAudio Muse Proto**: ESP32‑WROVER, PS�
 | GND        | —    | All modules | Common ground                            |
 
 ### Schematic
-
+<p align="center">
 ![Dino's schematic](https://github.com/user-attachments/assets/e982b65f-900c-4e72-82cd-8a69d27b0238)
+</p>
 
 ### Realtime Inference Backend
 
