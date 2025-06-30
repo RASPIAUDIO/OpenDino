@@ -1,7 +1,8 @@
 # 🦖 Open Dino: An Open, Real‑Time AI Educational Toy on ESP32
-<p align="center">[![Watch the demo](https://github.com/user-attachments/assets/d8d91100-6057-48ae-99a0-2b17d5463887)](https://www.youtube.com/watch?v=aPcab4P5pzs) </p>
 
-> **Early‑access reservation** — Interested in owning an Open Dino? Pre‑book a unit at <http://dino.raspiaudio.com/> for **1 €** (fully refundable if we do not reach the target). When we reach ≈ 1 000 reservations we’ll contact you before starting hardware production.
+<p align="center"><[![Watch the demo](https://github.com/user-attachments/assets/d8d91100-6057-48ae-99a0-2b17d5463887)](https://www.youtube.com/watch?v=aPcab4P5pzs)> </p>
+
+ **Early‑access reservation** — Interested in owning an Open Dino? Pre‑book a unit at <http://dino.raspiaudio.com/> for **1 €** (fully refundable if we do not reach the target). When we reach ≈ 1 000 reservations we’ll contact you before starting hardware production.
 
 ---
 
@@ -59,7 +60,7 @@ The project also proves that modern LLM capabilities fit on **sub‑\$5**, 520�
 ---
 
 ## System Architecture
-<p align="center">
+<p align="center"><
 ```mermaid
 sequenceDiagram
     participant Board as ESP32 (Muse Proto)
@@ -69,7 +70,7 @@ sequenceDiagram
     LLM-->>Board: JSON {"function_call":"move"}
     Board->>DRV8833: PWM A/B (head wiggle / walk)
 ```
- </p>
+ ></p>
 
 ### Hardware Platform
 
