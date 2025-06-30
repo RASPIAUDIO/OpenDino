@@ -105,6 +105,13 @@ Default pinout used by Muse Proto (all pins re‑mappable in `config.h`):
 | Motor A IN1  | 32   | PWM A                                   |
 | Motor A IN2  | 15   | LOW at boot (strap pin)                 |
 
+### Schematic
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e982b65f-900c-4e72-82cd-8a69d27b0238" alt="Dino's schematic">
+</p>
+
+
 ### Realtime Inference Backend
 
 - **Transport:** TLS WebSockets
