@@ -83,6 +83,10 @@ The reference design uses the **RaspiAudio Muse Proto**: ESP32‑WROVER, PS�
 | 3 V7 rail  | VBAT | DRV8833 VM  | Motors share Li‑ion rail                 |
 | GND        | —    | All modules | Common ground                            |
 
+### Schematic
+
+![Dino's schematic](https://github.com/user-attachments/assets/e982b65f-900c-4e72-82cd-8a69d27b0238)
+
 ### Realtime Inference Backend
 
 * Transport: TLS WebSockets
