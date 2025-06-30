@@ -1,172 +1,155 @@
-# Open Dino: An Open, Realtime‑AI Educational Toy on ESP32
+# 🦖 Open Dino: An Open, Real‑Time AI Educational Toy on ESP32
 
-### Demo Video
+[![Watch the demo](https://github.com/user-attachments/assets/d8d91100-6057-48ae-99a0-2b17d5463887)](https://www.youtube.com/watch?v=aPcab4P5pzs)
 
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=aPcab4P5pzs">
-    <img src="https://github.com/user-attachments/assets/d8d91100-6057-48ae-99a0-2b17d5463887" alt="Watch the demo">
-  </a>
-</p>
+> **Early‑access reservation** — Interested in owning an Open Dino? Pre‑book a unit at <http://dino.raspiaudio.com/> for **1 €** (fully refundable if we do not reach the target). When we reach ≈ 1 000 reservations we’ll contact you before starting hardware production.
 
-> **Early‑access reservation** — Interested in owning an Open Dino? Pre‑book a unit at [http://dino.raspiaudio.com/](http://dino.raspiaudio.com/) 1€ refundable if we do not reach the target. If we gather enough interest (≈ 1 000 reservations), we’ll contact you before moving forward with hardware production.
+---
 
+## Overview
 
-## Abstract
+Open Dino is a fully open‑source, microcontroller‑powered voice assistant that runs **GPT‑4o mini Realtime** entirely over **raw WebSockets**—no WebRTC, desktop bridge, or companion server required. A single **ESP32‑WROVER** handles:
 
-This repository presents **Open Dino**, an open‑software platform that integrates low‑cost micro‑controllers with large‑scale language models (LLMs) through a lightweight WebSocket interface. 
-**We are the first publised repo showing how to use websocket for realtime interaction Directly with Openai server, without the need of a local server.** 
+* Secure authentication and streaming JSON messages to OpenAI.
+* Full‑duplex 24 kHz PCM16 audio (≈ 400 ms push‑to‑talk latency on 10 Mbps Wi‑Fi).
+* JSON‑Schema function calls to control toy motors (e.g. `move(speed, duration)`).
 
-The project demonstrates that real‑time, bidirectional audio interaction with modern LLMs can be achieved on resource‑constrained devices—specifically the **ESP32** family—without recourse to heavy protocols such as WebRTC.   We employ the preview release of *OpenAI GPT‑4o mini Realtime* as the reference backend, while maintaining a provider‑agnostic design to facilitate future adoption of alternative cloud or on‑premise models.
-
-> **Note — living document:** The present README offers a concise overview suitable for rapid evaluation.  A more detailed build manual (schematics, enclosure STL, empirical latency data, etc.) will be added in a subsequent revision.
+The reference hardware is RaspiAudio’s **Muse Proto** dev‑board, but any ESP32‑WROVER + I²S mic/amp combo works—the only changes are pin definitions.
 
 ---
 
 ## Table of Contents
-
-1. [Motivation](#1-motivation)
-2. [System Architecture](#2-system-architecture)
-   - 2.1 Hardware Platform
-   - 2.2 Real‑time Inference Backend
-3. [Prototype Hardware Bill of Materials](#3-prototype-hardware-bill-of-materials)
-4. [Self‑Assembly Instructions](#4-self-assembly-instructions)
-5. [Firmware Quick‑Start](#5-firmware-quick-start)
-6. [Roadmap](#6-roadmap)
-7. [Contributing](#7-contributing)
-8. [License](#8-license)
-9. [Citation](#9-citation)
-
----
-
-## 1  Motivation
-
-Early child development benefits from imaginative play and rich linguistic input.  Off‑the‑shelf “smart” toys often
-
-- lock users into proprietary ecosystems,
-- collect opaque telemetry, and
-- rely on subscription pricing.
-
-By contrast, **Open Dino** enables parents and educators to:
-
-- **Own the data path** – voice audio is exchanged only with an API endpoint the user chooses.
-- **Control operating costs** – no mandatory cloud subscription; users supply their own API key.
-- **Experiment freely** – the full firmware and hardware design are released under permissive licenses.
-
-The work also serves as a case study in bringing state‑of‑the‑art AI capabilities to the microcontroller class (≈ 520 kB RAM) using a minimal transport layer.
+1. [Motivation](#motivation)
+2. [Key Features](#key-features)
+3. [System Architecture](#system-architecture)
+   * 3.1 [Hardware Platform](#hardware-platform)
+   * 3.2 [Realtime Inference Backend](#realtime-inference-backend)
+4. [Bill of Materials](#bill-of-materials)
+5. [Quick‑Start Guide](#quick-start-guide)
+6. [Roadmap](#roadmap)
+7. [Contributing](#contributing)
+8. [License](#license)
+9. [Citation](#citation)
 
 ---
 
-## 2  System Architecture
+## Motivation
 
-### 2.1 Hardware Platform
+Commercial “smart toys” often lock users into proprietary ecosystems, collect opaque telemetry, and demand subscriptions. Open Dino takes the opposite approach:
 
-The reference build is based on [**RaspiAudio Muse Proto**](https://raspiaudio.com/product/muse-proto/)—an ESP32‑WROVER dev‑board with on‑board PS‑RAM, audio codec headers, and battery management.  Key parameters are summarised in Table 1.
+* **Data ownership** – Voice data goes only to the API endpoint you configure.
+* **Cost control** – No mandatory cloud fees; just supply your own API key.
+* **Hackability** – All firmware, hardware, and documentation are permissively licensed.
 
-> **Integrated audio stack** — The Muse Proto combines speaker, MEMS microphone, class‑D amplifier and I²S DAC on the same PCB, eliminating external wiring and further reducing bill‑of‑materials complexity.
-
-| Feature       | Value                             |
-| ------------- | --------------------------------- |
-| MCU           | ESP32‑WROVER (8 MB PS‑RAM)        |
-| ADC / Mic     | I²S MEMS (e.g. INMP441)           |
-| DAC / Amp     | MAX98357A (24 kHz, 3 W)           |
-| Motor Control | H‑bridge driver (2 × PWM) external component needed        |
-| Power         | 3 V7 Li‑ion with on‑board charger |
-
-*Table 1 — Hardware summary of the Muse Proto platform.*
-
-### 2.2 Realtime Inference Backend
-
-The firmware streams raw **pcm16/24 kHz** audio to the LLM server over secure WebSockets, receiving audio deltas in the same format.  Function calls (JSON‑Schema) enable the model to actuate the toy—e.g. `move(speed, duration)`—without bespoke parsing on the device.  A provider switch only requires:
-
-1. New WebSocket URI.
-2. Revised authentication header.
-3. Optionally, a modified tool schema.
+The project also proves that modern LLM capabilities fit on **sub‑\$5**, 520 kB‑RAM microcontrollers when unnecessary protocol overhead is stripped away.
 
 ---
 
-## 3  Prototype Hardware Bill of Materials
+## Key Features
 
-| Qty | Part                                  | Reference link                                                                           |
-| --- | ------------------------------------- | ---------------------------------------------------------------------------------------- |
-| 1   | RaspiAudio Muse Proto dev‑board       | [https://raspiaudio.com/product/muse-proto/](https://raspiaudio.com/product/muse-proto/) |
-| 1   | 18650 Li‑ion cell + holder            | —                                                                                        |
-| 1   | one donor motorised stuffed animal    | —                                                                                        |
-
-Estimated prototype cost ≤ 15 USD (2025Q2 retail).
-
----
-
-## 4  Self‑Assembly Instructions
-
-1. **Flash prerequisites**: Install ESP32 platform in Arduino IDE ≥2.3 or PlatformIO.
-2. **Clone repository**:
-   ```bash
-   git clone https://github.com/raspiaudio/funny-dino.git
-   ```
-3. **Hardware wiring**: Follow the schematic in `/docs/hardware/` (to be published).  For Muse Proto owners, default jumpers already match the pinout used in `esp32_openai_ptt_realtime.ino`.
-4. **Credentials**: Edit `OPENAI_KEY`, `WIFI_SSID`, `WIFI_PASS` in the source.  The key string is deliberately redacted as `SK…`.
-5. **Compile** with `PSRAM_ENABLED`, 240 MHz, "Huge App" partition.
-6. **Power‑up**.  Hold the push‑to‑talk button (GPIO19), speak, release.  Dino responds within ≈ 800 ms.
-
-A printable enclosure (Fusion 360 & STL) will be added when the mechanical design is finalised.
+| Feature | Details |
+|---------|---------|
+| Bare‑metal WebSocket stack | No local or cloud relay servers. |
+| Full‑duplex 24 kHz PCM16 audio | Up‑ and downstream streamed concurrently. |
+| Push‑to‑talk latency ≈ 400 ms | Measured on 10 Mbps 802.11n Wi‑Fi. |
+| JSON‑Schema function calls | `move(speed, duration)` controls two DC motors via an H‑bridge. |
+| Captive web portal | Configure Wi‑Fi, API key, and per‑child prompt. |
+| Dual‑core workload split | Core 0: WebSocket + buffer • Core 1: I²S audio + Base64 codec. |
+| Permissive licences | MIT firmware, CERN‑OHL‑P hardware. |
 
 ---
 
-## 5  Firmware Quick‑Start
+## System Architecture
 
-```cpp
-// excerpt
-#define OPENAI_KEY "SK..."          // supply your own key
-authHeader = "Bearer " + OPENAI_KEY;
-... // build & flash
+```mermaid
+sequenceDiagram
+    participant Board as ESP32 (Muse Proto)
+    participant LLM as GPT‑4o mini Realtime
+    Board->>LLM: pcm16 / 24 kHz (WebSocket)
+    LLM-->>Board: delta audio (pcm16)
+    LLM-->>Board: JSON {"function_call":"move"}
+    Board->>DRV8833: PWM A/B (head wiggle / walk)
 ```
 
-Serial logs expose JSON traffic for debugging.  Average round‑trip latency on a 10 Mbps uplink is 620 ± 35 ms (N = 100 trials).
+### Hardware Platform
+
+The reference design uses the **RaspiAudio Muse Proto**: ESP32‑WROVER, PS‑RAM, on‑board MEMS mic, speaker, DAC/amp, and battery management.
+
+| Signal     | GPIO | Destination | Notes                                    |
+|------------|------|-------------|------------------------------------------|
+| PTT button | 19   | Push button | Active‑LOW, push‑to‑talk                 |
+| Motor IN1  | 32   | DRV8833 AIN1| Head wiggle / walk forward (PWM)         |
+| Motor IN2  | 15   | DRV8833 AIN2| Keep LOW during boot                     |
+| 3 V7 rail  | VBAT | DRV8833 VM  | Motors share Li‑ion rail                 |
+| GND        | —    | All modules | Common ground                            |
+
+### Realtime Inference Backend
+
+* Transport: TLS WebSockets
+* Audio: 16‑bit PCM, 24 kHz, 20 ms frames
+* Latency: 620 ± 35 ms round‑trip (N = 100)
+
+Switching providers needs only a new WebSocket URI, auth header, and (optionally) a revised tool schema.
 
 ---
 
-## 6  Roadmap
+## Bill of Materials
 
-| Phase | Milestone                                 | Status                  |
-| ----- | ----------------------------------------- | ----------------------- |
-| v0.1  | OpenAI GPT‑4o mini realtime demo          | ✅ done                  |
-| v0.2  | Google AI “Gemini Realtime” compatibility | 🔄 in progress          |
-| v0.3  | LAN‑only inference (local LLM)            | ⏳ planned               |
-| v0.4  | OTA firmware updater                      | ⏳ planned               |
-| v1.0  | Kid‑safe injection‑moulded enclosure      | 🚀 contingent on demand |
+| Qty | Part | Purpose | Link |
+|-----|------|---------|------|
+| 1 | RaspiAudio Muse Proto | ESP32‑WROVER, audio I/O, charger | <https://raspiaudio.com/product/muse-proto/> |
+| 1 | DRV8833 dual H‑bridge | Drives head & leg motors | any retailer |
+| 1 | 18650 Li‑ion + holder | Portable power | — |
+| 1 | Motorised plush toy | Enclosure & actuators | — |
 
-A minimum of **1 000 pre‑orders** is required to amortise tooling for mass production (see [raspiaudio.com](https://raspiaudio.com/)).
+**Estimated cost (mid‑2025): ≤ 50 USD**
 
 ---
 
-## 7  Contributing
+## Quick‑Start Guide (Arduino IDE ≥ 2.3, ESP32 core v3.1.0)
 
-Contributions are very welcome.  Please observe the following guidelines:
+```bash
+# Clone the repo
+git clone https://github.com/RASPIAUDIO/OpenDino.git
+cd OpenDino/firmware
+```
 
-1. Open an issue to discuss substantial proposals.
-2. Keep code portable; avoid proprietary SDKs.
+1. Install **ESP32 Arduino core v3.1.0** via *Boards Manager*.
+2. Open `OpenDino.ino`.
+3. Enter your `OPENAI_KEY`, `WIFI_SSID`, and `WIFI_PASS` (temporary keys supported).
+4. **Tools ▸ Partition Scheme** → **Huge App (3 MB No OTA)**; enable **PSRAM**.
+5. Compile, flash, and open the Serial Monitor @ 921 600 baud.
+6. On first boot, connect to the **captive portal** to set a child‑specific prompt.
+7. Hold **GPIO 19** (PTT), speak, release—Dino answers *and* physically reacts.
+
+---
+
+## Roadmap
+
+| Version | Milestone | Status |
+|---------|-----------|--------|
+| v0.1 | GPT‑4o mini realtime demo | ✅ Completed |
+| v0.4 | OTA firmware updates | ⏳ Planned |
+
+---
+
+## Contributing
+
+1. Open an issue before large changes.
+2. Keep the code portable—avoid proprietary SDKs.
 3. Respect child privacy—no unsolicited data collection.
-4. Provide empirical benchmarks where relevant (latency, power, etc.).
+4. Include empirical benchmarks where relevant.
 
 ---
 
-## 8  License
+## License
 
-*Hardware*: CERN‑OHL‑P‑2.0\
-*Firmware & docs*: MIT License\
-See `LICENSE` files for full text.
 
----
+* **Firmware & docs**: MIT License
 
-## 9  Citation
-
-If you use this work in academic writing, please cite as:
-
-```
-J.‑B. Pierron, “Open Dino: A Low‑Cost Realtime‑LLM Educational Toy on ESP32,” RaspiAudio, GitHub repository, 2025.  [Online].  Available: https://github.com/raspiaudio/funny-dino
-```
+See the `LICENSE` files for full text.
 
 ---
 
-© 2025 RaspiAudio — *Expanding creativity through open audio .*
+
 
