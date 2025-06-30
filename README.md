@@ -146,7 +146,14 @@ cd OpenDino/firmware
 4. **Tools ▸ Partition Scheme** → **Huge App (3 MB No OTA)**; enable **PSRAM**.
 5. Compile, flash, and open the Serial Monitor @ 921 600 baud.
 6. On first boot, connect to the **captive portal** to set a child‑specific prompt.
-7. Hold **GPIO 19** (PTT), speak, release—Dino answers *and* physically reacts.
+7. Hold **GPIO 19** (PTT), speak, release—Dino answers *and* physically reacts.t
+
+
+.md addition:
+After compilation a captive wifi portal wifi portal will popup to allow you to set your wifi credentials, api key and prompt.
+If after setting the prompt you need to go back to the portal push the PTT button while reset
+![image](https://github.com/user-attachments/assets/aaf7c906-ee5d-4f88-90aa-8d46f4fbee99)
+
 
 ---
 
