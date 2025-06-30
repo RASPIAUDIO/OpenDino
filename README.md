@@ -133,6 +133,8 @@ cd OpenDino/firmware
 | Version | Milestone | Status |
 |---------|-----------|--------|
 | v0.1 | GPT‑4o mini realtime demo | ✅ Completed |
+| v0.2 | Captive wifi portal for settings | ⏳ Planned |
+| v0.3 | Extension to other LLM | ⏳ Planned |
 | v0.4 | OTA firmware updates | ⏳ Planned |
 
 ---
