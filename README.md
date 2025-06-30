@@ -14,11 +14,22 @@
 
 Open Dino is a fully open‑source, microcontroller‑powered voice assistant that runs **GPT‑4o mini Realtime** entirely over **raw WebSockets**—no WebRTC, desktop bridge, or companion server required. A single **ESP32‑WROVER** handles:
 
-* Secure authentication and streaming JSON messages to OpenAI.
-* Full‑duplex 24 kHz PCM16 audio (≈ 400 ms push‑to‑talk latency on 10 Mbps Wi‑Fi).
-* JSON‑Schema function calls to control toy motors (e.g. `move(speed, duration)`).
+- Secure authentication and streaming JSON messages to OpenAI.
+- Full‑duplex 24 kHz PCM16 audio (≈ 400 ms push‑to‑talk latency on 10 Mbps Wi‑Fi).
+- JSON‑Schema function calls to control toy motors (e.g. `move(speed, duration)`).
 
 The reference hardware is RaspiAudio’s **Muse Proto** dev‑board, but any ESP32‑WROVER + I²S mic/amp combo works—the only changes are pin definitions.
+
+---
+## GitHub Repository
+
+[https://github.com/RASPIAUDIO/OpenDino](https://github.com/RASPIAUDIO/OpenDino)
+
+## OpenDino vs. ElatoAI
+
+[OpenDino](https://github.com/RASPIAUDIO/OpenDino) is an open‑source project that connects low‑cost **ESP32** microcontrollers directly to OpenAI's Realtime API via secure **WebSockets**. It streams microphone audio to **GPT‑4o mini** (or any compatible model) and plays back the model's audio responses, enabling bidirectional conversation **without** a local server.
+
+Unlike the [ElatoAI example](running_realtime_api_speech_on_esp32_arduino_edge_runtime_elatoai.md), which relies on a companion server running on your PC to handle WebRTC signalling and audio piping, OpenDino performs the entire WebSocket communication stack — authentication, Base64 chunking, streaming, and JSON‑Schema function calls — directly on the ESP32 board.
 
 ---
 
