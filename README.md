@@ -169,7 +169,7 @@ cd OpenDino/firmware
 
 * **Firmware & docs**: MIT License
 
-See the `LICENSE` files for full text.
+
 
 ---
 
