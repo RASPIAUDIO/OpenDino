@@ -26,7 +26,7 @@ Open Dino is a fully open‑source, microcontroller‑powered voice assistant 
 - JSON‑Schema function calls to control toy motors (e.g. `move(speed, duration)`).
 - **Captive‑portal configuration** that stores Wi‑Fi credentials, API key, and child‑specific prompt in NVS.
 
-The reference hardware is RaspiAudio’s **Muse Proto** dev‑board, but **buying it is totally optional**. Any ESP32‑WROVER (or WROOM) plus an I²S microphone and I²S amplifier works. Muse Proto simply merges those breakouts onto one PCB so you have fewer wires and an integrated charger.
+The reference hardware is RaspiAudio’s **Muse Proto** dev‑board, but **buying it is totally optional**. Any ESP32‑WROVER plus an I²S microphone and I²S amplifier works. Muse Proto simply merges those breakouts onto one PCB so you have fewer wires and an integrated charger.
 
 ---
 
