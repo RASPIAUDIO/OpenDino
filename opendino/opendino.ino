@@ -26,7 +26,6 @@
 #include <WiFi.h>
 #include <mbedtls/base64.h>
 #include <Adafruit_NeoPixel.h>
-#include "museWrover.h"
 #include <Arduino.h>
 #include <esp_wifi.h>
 
@@ -35,6 +34,24 @@ using namespace websockets;
 /*───────────────────  CONFIG  ───────────────────*/
 
 #define OPENAI_KEY "SK... Enter Your Key Here"
+
+
+//replace your PIN definition here
+// I2S GPIOs
+#define I2S_SDOUT     26
+#define I2S_BCLK       5
+#define I2S_LRCK      25
+#define I2S_MCLK       0
+#define I2S_SDIN      35
+// Amplifier enable
+#define GPIO_PA_EN    GPIO_NUM_21
+// Amplifier gain (Proto)
+#define GPIO_PROTO_GAIN GPIO_NUM_23
+#define NEOPIXEL_PIN 22        // Pin for the RGB LED
+#define NUMPIXELS 1            // Muse Luxe has 1 RGB LED
+constexpr gpio_num_t PTT_PIN = GPIO_NUM_19;  // LOW = recording
+constexpr uint8_t MOT_A1_PIN = 32;  // PWM / direction 1
+constexpr uint8_t MOT_A2_PIN = 15;  // PWM / direction 2 (⚠ strapping – keep LOW at boot)
 
 
 /* ─────── CA root ─────── */
@@ -74,12 +91,6 @@ volatile bool     audioDone = false;    // true when the server has finished sen
 volatile uint32_t pcmIn     = 0;        // total bytes pushed into the ring buffer
 volatile uint32_t pcmOut    = 0;        // total bytes actually sent to I²S
 
-/* GPIO */
-constexpr gpio_num_t PTT_PIN = GPIO_NUM_19;  // LOW = recording
-
-// ---------- Pinout ----------
-constexpr uint8_t MOT_A1_PIN = 32;  // PWM / direction 1
-constexpr uint8_t MOT_A2_PIN = 15;  // PWM / direction 2 (⚠ strapping – keep LOW at boot)
 
 // ---------- PWM config ----------
 constexpr uint32_t PWM_FREQ = 20'000;  // 20 kHz, inaudible
