@@ -32,7 +32,7 @@ The reference hardware is RaspiAudio’s **Muse Proto** dev‑board, but **buy
 
 
 
-OpenDino talks straight to the OpenAI Realtime API from the ESP32 over TLS WebSockets, whereas **other approach routes the audio through an intermediate edge‑server** [ElatoAI example](https://cookbook.openai.com/examples/voice_solutions/running_realtime_api_speech_on_esp32_arduino_edge_runtime_elatoai), running on a PC, Raspberry Pi, or cloud VM. No solution is categorically "better"—direct‑to‑cloud keeps the BOM and maintenance minimal, while an edge server unlocks heavier codecs, retries, and multi‑user analytics. Pick whatever matches your project’s constraints.
+OpenDino talks straight to the OpenAI Realtime API from the ESP32 over TLS WebSockets, whereas **other approach routes the audio through an intermediate edge‑server** [ElatoAI example](https://cookbook.openai.com/examples/voice_solutions/running_realtime_api_speech_on_esp32_arduino_edge_runtime_elatoai), running on a PC, Raspberry Pi, or cloud VM. No solution is categorically "better"—direct‑to‑cloud is simpler, while an edge server unlocks heavier codecs, retries, and multi‑user analytics. Pick whatever matches your project’s constraints.
 
 ---
 
