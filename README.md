@@ -90,36 +90,6 @@ sequenceDiagram
 
 ### Hardware Platform
 
-Default pinout used by Muse Proto (all pins re‑mappable in `config.h`):
-
-| Function     | GPIO | Notes                                   |
-| ------------ | ---- | --------------------------------------- |
-| I²S BCLK     | 5    |                                         |
-| I²S LRCK     | 25   |                                         |
-| I²S DOUT     | 26   | Speaker DAC (MAX98357A)                 |
-| I²S DIN      | 35   | MEMS mic (INMP441)                      |
-| I²S MCLK     | 0    | Optional if codec derives its own clock |
-| PTT button   | 19   | Active‑LOW push‑to‑talk                 |
-| Amp enable   | 21   | HIGH disables amp during deep‑sleep     |
-| NeoPixel LED | 22   | Status feedback                         |
-| Motor A IN1  | 32   | PWM A                                   |
-| Motor A IN2  | 15   | LOW at boot (strap pin)                 |
-
-### Schematic
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/e982b65f-900c-4e72-82cd-8a69d27b0238" alt="Dino's schematic">
-</p>
-
-
-### Realtime Inference Backend
-
-- **Transport:** TLS WebSockets
-- **Audio:** 16‑bit PCM, 24 kHz, 20 ms frames
-- **Round‑trip latency:** 620 ± 35 ms (N = 100)
-
----
-
 ## Bill of Materials
 
 ### Choose one of the two core‑board options
@@ -140,7 +110,37 @@ Default pinout used by Muse Proto (all pins re‑mappable in `config.h`):
 
 
 
+
+Default pinout used by Muse Proto (all pins re‑mappable in `config.h`):
+
+| Function     | GPIO | Notes                                   |
+| ------------ | ---- | --------------------------------------- |
+| I²S BCLK     | 5    |                                         |
+| I²S LRCK     | 25   |                                         |
+| I²S DOUT     | 26   | Speaker DAC (MAX98357A)                 |
+| I²S DIN      | 35   | MEMS mic (INMP441)                      |
+| I²S MCLK     | 0    | Optional if codec derives its own clock |
+| PTT button   | 19   | Active‑LOW push‑to‑talk                 |
+| Amp enable   | 21   | HIGH disables amp during deep‑sleep     |
+| NeoPixel LED | 22   | Status feedback                         |
+| Motor A IN1  | 32   | PWM A                                   |
+| Motor A IN2  | 15   | LOW at boot (strap pin)                 |
+
+### Schematic with option A
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e982b65f-900c-4e72-82cd-8a69d27b0238" alt="Dino's schematic">
+</p>
+
+
+### Realtime Inference Backend
+
+- **Transport:** TLS WebSockets
+- **Audio:** 16‑bit PCM, 24 kHz, 20 ms frames
+- **Round‑trip latency:** 620 ± 35 ms (N = 100)
+
 ---
+
 
 ## Quick‑Start Guide (Arduino IDE ≥ 2.3, ESP32 core v3.1.0)
 
@@ -170,8 +170,7 @@ cd OpenDino/firmware
 | v0.4    | Temporary API key rotation                   | ⏳ Planned   |
 | v0.5    | Non‑proprietary echo cancellation            | ⏳ Planned   |
 | v0.6    | Full‑duplex (no PTT)                         | ⏳ Planned   |
-| v0.7    | Support alternate LLM providers              | ⏳ Planned   |
-| v0.8    | OTA firmware updates                         | ⏳ Planned   |
+| v0.7    | OTA firmware updates                         | ⏳ Planned   |
 
 ---
 
