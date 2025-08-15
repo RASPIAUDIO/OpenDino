@@ -1,5 +1,5 @@
 /****************************************************************************************
-    esp32_opendino_ptt_realtime.ino — 30 Jun 2025 FOR MUSE PROTO
+    esp32_opendino_ptt_realtime.ino — 30 Jun 2025 FOR MUSE LUXE
     ────────────────────────────────────────────────────────────────────────────────────
     • Realtime OpenAI “push-to-talk” client (24 kHz pcm16 I²S in/out) for ESP32.
     • Opens a Wi-Fi / settings *captive portal* when:
@@ -30,8 +30,18 @@
 #include <Adafruit_NeoPixel.h>
 #include <esp_wifi.h>
 #include <Arduino.h>
+#include "museWrover.h"  // Extra HAL + ES8388 driver for LUXE
 
 using namespace websockets;
+
+
+ES8388 es;
+int volume = 100;    // 0…100
+int microVol = 100;  // 0…96
+constexpr gpio_num_t PTT_PIN = BUTTON_PAUSE;
+
+
+
 
 /*────────────────────────── GPIO MAP ──────────────────────────*/
 // I²S
@@ -41,10 +51,7 @@ using namespace websockets;
 #define I2S_MCLK 0
 #define I2S_SDIN 35
 // Push-to-talk (LOW = record)
-constexpr gpio_num_t PTT_PIN = GPIO_NUM_19;
 // Speaker amplifier & prototype gain
-constexpr gpio_num_t GPIO_PA_EN = GPIO_NUM_21;       // HIGH = amp OFF
-constexpr gpio_num_t GPIO_PROTO_GAIN = GPIO_NUM_23;  // pulled-down = max gain
 // NeoPixel status LED
 #define NEOPIXEL_PIN 22
 #define NUMPIXELS 1
@@ -553,7 +560,7 @@ void setup() {
   /* Amp OFF at boot & max gain */
   pinMode(GPIO_PA_EN, OUTPUT);
   digitalWrite(GPIO_PA_EN, HIGH);
-  pinMode(GPIO_PROTO_GAIN, INPUT_PULLDOWN);
+
 
   /* Motor PWM channels */
   pinMode(MOT_A1_PIN, INPUT_PULLDOWN);
@@ -564,6 +571,13 @@ void setup() {
   ledcWrite(MOT_A2_PIN, 0);
 
   setMotorA(0);
+
+  es.volume(ES8388::ES_MAIN, 25);
+  es.volume(ES8388::ES_OUT1, volume);
+  es.microphone_volume(microVol);
+  // es.select_internal_microphone();
+  es.write_reg(ES8388_ADDR, 12, 0x0C);
+
 
   /* Wi-Fi — portal if no connection or PTT held */
   bool pttBoot = digitalRead(PTT_PIN) == LOW;
